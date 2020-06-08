@@ -1,7 +1,7 @@
 # DNN-regression
 This is a repro of DNN state level gun-ownership regression software by Python and Pytorch 1.3.1.
 
-This software is equiped with CUDE GPU parallel training.
+This software is equiped with CUDA GPU parallel training.
 
 The source code is included in code directory 
 
