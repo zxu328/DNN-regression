@@ -17,9 +17,9 @@ This code includes:
 
 (5) TrainingData.xlsx: training dataset.
 
-(6) TestingData.xlsx: testing dataset 1.
+(6) TestingData.xlsx: testing dataset 1 (validation #1).
 
-(7) testingData.xlsx: testing dataset 2
+(7) testingData.xlsx: testing dataset 2 (validation #2).
 
 (8) DNNResidualTrain.dat: DNN training residual results.
 
