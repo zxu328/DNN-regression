@@ -28,3 +28,7 @@ This code includes:
 (10) DNNResidualTest2.dat: DNN testing dataset2 residula results.
 
 (11) example.png: a snapshot of a successful training process result. (Note: It is another independent traing and it is not consistent with our manuscript result!)
+
+Users can download our source codes and run their own training and testing on python and pythorch platform.
+
+Conducting 'python CVDNN.py' on terminal under correct directory path can run our program.
