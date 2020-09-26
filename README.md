@@ -31,4 +31,19 @@ This code includes:
 
 Users can download our source codes and run their own training and testing on python and pythorch platform.
 
-Conducting 'python CVDNN.py' on terminal under correct directory path can run our program.
+Run 'python CVDNN.py' on terminal under correct directory path can run our program.
+
+
+If the users want use their own data instead of our provided testing data, they should do the following steps:
+
+
+1. Collect their data and format it as our 'testingData.xlsx' file.
+
+2. Name the data file as 'testingData.xlsx' to replace the original one.
+
+3. Run 'python CVDNN.py' on the termial under 'code' directory.
+
+4. Get model prediction residuals on the users' own testing data in 'DNNResidualTest.dat'.
+
+
+'
