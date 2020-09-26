@@ -45,5 +45,3 @@ If the users want use their own data instead of our provided testing data, they 
 
 4. Get model prediction residuals on the users' own testing data in 'DNNResidualTest.dat'.
 
-
-'
