@@ -90,7 +90,7 @@ class DNNClass:
                 if (a > self.TrainCri and b > self.ValCri): 
                     print(loss.item(), 'train:', a)
                     print(lossVal.item(), 'test:', b)
-                    print(lossTest2.item(), 'test:', c)
+                    
                     yPredict = yPredict.cpu()
                     yValPredict = yValPredict.cpu()
                     yTest2Predict = yTest2Predict.cpu()
@@ -110,8 +110,8 @@ class DNNClass:
     
             if (t % 100 == 0):
                 if test2 == 1:
-                    print('iterationK', t, 'loss:', loss.item(), 'valLoss', lossVal.item(), 'valLoss2', lossTest2.item())
-                    print('a:', a, 'b:', b, 'c', c)
+                    print('iterationK', t, 'loss:', loss.item(), 'valLoss', lossVal.item())
+                    print('a:', a, 'b:', b)
                     
                 else:
                     print('iterationK', t, 'loss:', loss.item(), 'valLoss', lossVal.item())
