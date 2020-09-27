@@ -50,7 +50,7 @@ X_train = X_train.T
 X_test = X_test.T
 X_test2 = X_test2.T
 
-reload = 0
+reload = 1
 needCV = 0
 
 DNN = DNNClass(l2Reg = 0.0, lr = 1e-5, epochs = 100000, H1 = 500, H2 = 1000, TrainCri = 0.96, ValCri = 0.95, device = device, X_test2 = X_test2, y_test2 = y_test2, reload = reload)
@@ -68,7 +68,7 @@ if (not reload) and needCV:
     print(DNNValRSquare, DNNTestSquare, DNNTest2Square)
 
 # output residual
-out = 0
+out = 1
 
 if out:
 
