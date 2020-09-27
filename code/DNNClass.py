@@ -9,13 +9,19 @@ from sklearn.metrics import r2_score
 from sklearn.metrics import mean_squared_error
 
 class DNNClass:
-    def __init__(self, l2Reg, lr, epochs, H1, H2, TrainCri, ValCri, device, X_test2, y_test2):
-        
-        self.model = M.DLRegresser(2, H1, H2, 1).cuda(device)
+    def __init__(self, l2Reg, lr, epochs, H1, H2, TrainCri, ValCri, device, X_test2, y_test2, reload):
+        self.reload = reload
+        if reload:
+            self.model = torch.load('./savedModel.pt')
+            self.model.cuda(device)
+            self.epochs = 0
+        else:
+            self.model = M.DLRegresser(2, H1, H2, 1).cuda(device)
+            self.epochs = epochs
         self.l2_reg = l2Reg
         self.lr = lr
         self.optimizer = optim.Adam(self.model.parameters(), lr = self.lr, weight_decay = self.l2_reg)
-        self.epochs = epochs
+        
         self.TrainCri = TrainCri
         self.ValCri = ValCri
         self.device = device
@@ -24,7 +30,7 @@ class DNNClass:
         
         
         
-    def fit(self, XTrain, yTrain, XVal, yVal, test2):
+    def fit(self, XTrain, yTrain, XVal, yVal, test2 = 1):
         yTrainMean = np.mean(yTrain) * np.ones(yTrain.shape)
         yValMean = np.mean(yVal) * np.ones(yVal.shape)
         MSTTrain = mean_squared_error(yTrain, yTrainMean)
@@ -47,6 +53,22 @@ class DNNClass:
             
         
         loss_fn = torch.nn.MSELoss()
+        if self.reload:
+            a = 1.0
+            b = 1.0
+            c = 1.0
+            yPredict = self.model(xTrain) 
+            yValPredict = self.model(xVal)
+            yTest2Predict = self.model(xTest2)
+            yPredict = yPredict.cpu()
+            yValPredict = yValPredict.cpu()
+            yTest2Predict = yTest2Predict.cpu()
+            yPredict = yPredict.data.numpy()
+            yValPredict = yValPredict.data.numpy()
+            yTest2Predict = yTest2Predict.data.numpy()
+            return a, b, c, yPredict, yValPredict, yTest2Predict
+            
+            
         
         for t in range(self.epochs):
             yPredict = self.model(xTrain)
@@ -65,7 +87,7 @@ class DNNClass:
             b = 1.0 - lossVal.cpu().data.numpy() / MSTVal
             
             if test2 == 1:
-                if (a > self.TrainCri and b > self.ValCri and c > self.ValCri):
+                if (a > self.TrainCri and b > self.ValCri): 
                     print(loss.item(), 'train:', a)
                     print(lossVal.item(), 'test:', b)
                     print(lossTest2.item(), 'test:', c)
@@ -102,8 +124,10 @@ class DNNClass:
 
             self.optimizer.step()
             
-            
-        return a, b
+        if test2 == 1:    
+            return a, b, c, yPredict, yValPredict, yTest2Predict
+        else:
+            return a, b
         
         
     def predict(self, X):
@@ -114,6 +138,9 @@ class DNNClass:
         yPredict = yPredict.data.numpy()
         
         return yPredict
+    
+    def saveModel(self):
+        torch.save(self.model, './savedModel.pt')
         
         
         
