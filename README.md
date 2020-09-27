@@ -27,6 +27,8 @@ This code includes:
 
 (10) DNNResidualTest2.dat: DNN testing dataset2 residula results.
 
+(11) savedModel.pt: A pre-saved DNN model trained by the developers. It has testing R2 of 96.63%. (This 96.63% value may be varied for different machine and machine precision. The model should be retrained if this machine error happens by seting 'reload = 0' in CVDNN.)
+
 
 
 Users can download our source codes and run their own training and testing on python and pythorch platform.
