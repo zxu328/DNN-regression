@@ -53,7 +53,7 @@ X_test2 = X_test2.T
 reload = 1
 needCV = 0
 
-DNN = DNNClass(l2Reg = 0.0, lr = 1e-5, epochs = 100000, H1 = 500, H2 = 1000, TrainCri = 0.96, ValCri = 0.95, device = device, X_test2 = X_test2, y_test2 = y_test2, reload = reload)
+DNN = DNNClass(l2Reg = 0.0, lr = 1e-5, epochs = 100000, H1 = 500, H2 = 1000, TrainCri = 0.95, ValCri = 0.95, device = device, X_test2 = X_test2, y_test2 = y_test2, reload = reload)
 if (not reload) and needCV:
     DNNTrainRSquare, DNNValRSquare = cvEstimateDNN(10, DNN, X_train, y_train)
 
