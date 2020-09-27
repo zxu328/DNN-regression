@@ -65,7 +65,7 @@ if saveModel:
     DNN.saveModel()
 
 if (not reload) and needCV:
-    print(DNNValRSquare, DNNTestSquare, DNNTest2Square)
+    print(DNNValRSquare, DNNTestSquare)
 
 # output residual
 out = 1
